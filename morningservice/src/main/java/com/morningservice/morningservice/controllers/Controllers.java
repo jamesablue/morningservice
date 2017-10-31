@@ -28,6 +28,7 @@ public class Controllers {
                 .collect(Collectors.joining("\n"));
     }
 
+    // test merge comment
     @PostMapping(path = "/post")
     //public String post(@RequestBody String name, @RequestBody int reps) {
     public String post(@RequestBody Params params) {
