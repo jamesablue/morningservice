@@ -28,7 +28,7 @@ public class Controllers {
                 .collect(Collectors.joining("\n"));
     }
 
-    // test merge comment
+    // test merge conflicting comment
     @PostMapping(path = "/post")
     //public String post(@RequestBody String name, @RequestBody int reps) {
     public String post(@RequestBody Params params) {
