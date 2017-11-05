@@ -11,10 +11,6 @@ import java.util.stream.IntStream;
 @Component
 @RestController
 public class Controllers {
-    @RequestMapping("/home")
-    public String home() {
-        return "homepage";
-    }
 
     @RequestMapping("/localdatetime")
     public LocalDateTime localDateTime() {
