@@ -36,6 +36,7 @@ public class MetroService {
 
         String responseJson = restTemplate.exchange(predictionUrl + stationCode, HttpMethod.GET, entity, String.class).getBody();
 
+        //return trainTimes.getTrainTimes(responseJson);
         return trainTimes.getTrainTimes(responseJson);
         //return restTemplate.getForObject(predictionUrl + stationCode, String.class);
     }
