@@ -16,10 +16,10 @@ public class MetroController {
     @Autowired
     MetroService metroService;
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<Void> addLog() {
         return new ResponseEntity<Void>(HttpStatus.CREATED);
-    }
+    }*/
 
     @RequestMapping("home")
     public ResponseEntity<Void> home() {
