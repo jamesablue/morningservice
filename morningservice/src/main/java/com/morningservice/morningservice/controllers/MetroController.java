@@ -21,10 +21,10 @@ public class MetroController {
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }*/
 
-    @RequestMapping("home")
+    /*@RequestMapping("home")
     public ResponseEntity<Void> home() {
         return new ResponseEntity<Void>(HttpStatus.CREATED);
-    }
+    }*/
 
     @RequestMapping("printkey")
     public String printkey() {
