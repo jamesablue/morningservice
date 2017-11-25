@@ -1,6 +1,7 @@
 package com.morningservice.morningservice.services;
 
 import com.morningservice.morningservice.utilities.TrainTimes;
+import com.sun.javafx.binding.StringFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,20 @@ public class MetroService {
     }
 
     public String getStationInfo(String stationCode) {
+        String responseJson = getStationInfoResponseJson(stationCode);
+
+        //return trainTimes.getTrainTimes(responseJson);
+        return trainTimes.getTrainTimes(responseJson);
+        //return restTemplate.getForObject(predictionUrl + stationCode, String.class);
+    }
+
+    public String getStationInfoRaw(String stationCode) {
+        String responseJson = getStationInfoResponseJson(stationCode);
+
+        return trainTimes.getTrainTimesRaw(responseJson);
+    }
+
+    public String getStationInfoResponseJson(String stationCode) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
@@ -36,8 +51,8 @@ public class MetroService {
 
         String responseJson = restTemplate.exchange(predictionUrl + stationCode, HttpMethod.GET, entity, String.class).getBody();
 
-        //return trainTimes.getTrainTimes(responseJson);
-        return trainTimes.getTrainTimes(responseJson);
-        //return restTemplate.getForObject(predictionUrl + stationCode, String.class);
+        return responseJson;
     }
+
+
 }

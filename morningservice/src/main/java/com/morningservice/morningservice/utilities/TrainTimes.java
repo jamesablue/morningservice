@@ -16,13 +16,34 @@ public class TrainTimes {
 
     public String getTrainTimes(String json) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            ResponseTrainTimes responseTrainTimes = objectMapper.readValue(json, ResponseTrainTimes.class);
+            ResponseTrainTimes responseTrainTimes = parseTrainTimesFromJson(json);
 
             return responseTrainTimes.toReport();
         } catch (Exception e) {
             return "Something went wrong: " + e.toString();
+        }
+    }
+
+    public String getTrainTimesRaw(String json) {
+        try {
+            ResponseTrainTimes responseTrainTimes = parseTrainTimesFromJson(json);
+
+            return responseTrainTimes.toString();
+        } catch (Exception e) {
+            return "Something went wrong: " + e.toString();
+        }
+    }
+
+    public ResponseTrainTimes parseTrainTimesFromJson(String json) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            ResponseTrainTimes responseTrainTimes = objectMapper.readValue(json, ResponseTrainTimes.class);
+
+            return responseTrainTimes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

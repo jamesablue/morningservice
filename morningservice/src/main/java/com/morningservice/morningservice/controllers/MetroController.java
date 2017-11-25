@@ -35,4 +35,9 @@ public class MetroController {
     public String getStationInfo(@PathVariable String stationCode) {
         return metroService.getStationInfo(stationCode);
     }
+
+    @RequestMapping("getStationInfoRaw/{stationCode}")
+    public String getStationInfoRaw(@PathVariable String stationCode) {
+        return metroService.getStationInfoRaw(stationCode);
+    }
 }
