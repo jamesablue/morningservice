@@ -14,6 +14,8 @@ import java.util.Map;
 @Component
 public class TrainTimes {
 
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     public String getTrainTimes(String json) {
         try {
             ResponseTrainTimes responseTrainTimes = parseTrainTimesFromJson(json);
@@ -28,7 +30,7 @@ public class TrainTimes {
         try {
             ResponseTrainTimes responseTrainTimes = parseTrainTimesFromJson(json);
 
-            return responseTrainTimes.toString();
+            return this.objectMapper.writeValueAsString(responseTrainTimes);
         } catch (Exception e) {
             return "Something went wrong: " + e.toString();
         }
@@ -36,9 +38,7 @@ public class TrainTimes {
 
     public ResponseTrainTimes parseTrainTimesFromJson(String json) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            ResponseTrainTimes responseTrainTimes = objectMapper.readValue(json, ResponseTrainTimes.class);
+            ResponseTrainTimes responseTrainTimes = this.objectMapper.readValue(json, ResponseTrainTimes.class);
 
             return responseTrainTimes;
         } catch (Exception e) {
