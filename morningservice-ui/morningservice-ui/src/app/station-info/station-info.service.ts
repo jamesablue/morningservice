@@ -1,11 +1,23 @@
 import { Injectable } from '@angular/core';
 import { IStationInfo } from './station-info';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import { HttpErrorResponse } from '@angular/common/http/src/response';
 
 @Injectable()
 export class StationInfoService {
+    private _stationUrl = 'http://jamesa.blue/getStationInfoRaw/E09';
 
-    getStationInfo(): IStationInfo {
-        return {
+    constructor(private _http: HttpClient) {}
+
+    getStationInfo(): Observable<IStationInfo> {
+        return this._http.get<IStationInfo>(this._stationUrl)
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+        /*return {
             "Trains": [{
               "Car": "6",
               "Destination": "Brnch Av",
@@ -47,6 +59,11 @@ export class StationInfoService {
               "LocationName": "College Park-U of Md",
               "Min": "28"
             }]
-          }
+          }*/
+    }
+
+    private handleError(err: HttpErrorResponse) {
+        console.log(err.message);
+        return Observable.throw(err.message);
     }
 }
