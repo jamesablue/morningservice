@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { StationInfoComponent } from './station-info/station-info.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -14,7 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'getStationInfo', component: StationInfoComponent },
+      { path: 'getStationInfo/:code', component: StationInfoComponent }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
