@@ -9,12 +9,12 @@ import { HttpErrorResponse } from '@angular/common/http/src/response';
 
 @Injectable()
 export class StationInfoService {
-    private _stationUrl = 'http://jamesa.blue/getStationInfoRaw/E09';
+    private _stationUrl = 'http://localhost:8080/getStationInfoRaw/';
 
     constructor(private _http: HttpClient) {}
 
-    getStationInfo(): Observable<IStationInfo> {
-        return this._http.get<IStationInfo>(this._stationUrl)
+    getStationInfo(stationCode: string): Observable<IStationInfo> {
+        return this._http.get<IStationInfo>(this._stationUrl + stationCode)
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
         /*return {
